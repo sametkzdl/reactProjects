@@ -1,8 +1,74 @@
+import { Routes, Route, useParams, Link } from "react-router-dom";
+import PureHtmlForm from "./pages/forms/purehtmlform";
+import ReactHookForm from "./pages/forms/reactHookForm";
+import Jokes from "./pages/jokesGenerator/jokes";
+import Home from "./pages/home";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [clickedUrl, SetClickedUrl] = useState("Home");
+
+  const urlData = [
+    { name: "Home", href: "/" },
+    { name: "PureHtmlForm", href: "/PureHtmlForm" },
+    { name: "ReactHookForm", href: "/ReactHookForm" },
+    { name: "Jokes", href: "/Jokes" },
+  ];
   return (
     <div className="App">
-    first lesson
+      <header>
+        <ul
+          style={{
+            padding: "20px",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "30px",
+            listStyle: "none",
+            boxShadow: "5px 5px  5px #eeeddd",
+            boxSizing: "border-box",
+          }}
+        >
+          {urlData.map(({ name, href }, index) => {
+            return (
+              <li key={index} onClick={() => SetClickedUrl(name)}>
+                {clickedUrl === name ? (
+                  <Link
+                    to={href}
+                    style={{
+                      textDecoration: "none",
+                      border: "3px solid red",
+                      padding: "7px",
+                      borderRadius: "5px",
+                      height: "50px",
+                    }}
+                  >
+                    {name}
+                  </Link>
+                ) : (
+                  <Link
+                    to={href}
+                    style={{
+                      textDecoration: "none",
+                      border: "1px solid #eeeddd",
+                      padding: "7px",
+                      borderRadius: "5px",
+                      height: "50px",
+                    }}
+                  >
+                    {name}
+                  </Link>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/PureHtmlForm" element={<PureHtmlForm />} />
+        <Route path="/ReactHookForm" element={<ReactHookForm />} />
+        <Route path="/Jokes" element={<Jokes />} />
+      </Routes>
     </div>
   );
 }

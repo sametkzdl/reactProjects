@@ -1,0 +1,14 @@
+.wrapInput {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 8px;
+    width: 100%;
+}
+
+span {
+    display: none;
+}
+
+input:invalid~span {
+    display: block;
+}
