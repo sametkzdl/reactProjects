@@ -1,18 +1,16 @@
-import { Routes, Route, useParams, Link } from "react-router-dom";
+import { Routes, Route, useParams, Link, useLocation } from "react-router-dom";
 import PureHtmlForm from "./pages/forms/purehtmlform";
 import ReactHookForm from "./pages/forms/reactHookForm";
-import Jokes from "./pages/jokesGenerator/jokes";
 import Home from "./pages/home";
-import { useEffect, useState } from "react";
+import RandomCard from "./pages/jokesGenerator/jokes";
 
 function App() {
-  const [clickedUrl, SetClickedUrl] = useState("Home");
-
+  const location = useLocation();
   const urlData = [
     { name: "Home", href: "/" },
     { name: "PureHtmlForm", href: "/PureHtmlForm" },
     { name: "ReactHookForm", href: "/ReactHookForm" },
-    { name: "Jokes", href: "/Jokes" },
+    { name: "RandomCard", href: "/RandomCard" },
   ];
   return (
     <div className="App">
@@ -30,8 +28,8 @@ function App() {
         >
           {urlData.map(({ name, href }, index) => {
             return (
-              <li key={index} onClick={() => SetClickedUrl(name)}>
-                {clickedUrl === name ? (
+              <li key={index}>
+                {location.pathname === href ? (
                   <Link
                     to={href}
                     style={{
@@ -67,7 +65,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/PureHtmlForm" element={<PureHtmlForm />} />
         <Route path="/ReactHookForm" element={<ReactHookForm />} />
-        <Route path="/Jokes" element={<Jokes />} />
+        <Route path="/RandomCard" element={<RandomCard />} />
       </Routes>
     </div>
   );

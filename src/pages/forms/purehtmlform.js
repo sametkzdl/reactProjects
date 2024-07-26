@@ -5,19 +5,21 @@ const Input = ({
   label,
   name,
   type,
-  setValues,
   placeholder,
   requiredText,
   required,
   pattern,
+  onChange,
   inputRef,
 }) => {
+  const [focused, setFocused] = useState(false);
   return (
     <div className="wrapInput">
       <label htmlFor={name} style={{ paddingBlock: "10px" }}>
         {label}
       </label>
       <input
+      className="custominput"
         name={name}
         id={name}
         type={type}
@@ -25,15 +27,24 @@ const Input = ({
         required={required}
         pattern={pattern}
         // ref={inputRef}
-        onChange={(e) => setValues(e.target.value)}
+        focused={focused.toString()}
+        onBlur={() => setFocused(true)}
+        onChange={onChange}
+        onFocus={() => name === "confirmpassword" && setFocused(true)}
       />
-      <span style={{ paddingBlock: "10px", color: "red" }}>{requiredText}</span>
+      <span
+        className="customspan"
+        focused={focused.toString()}
+        style={{ paddingBlock: "10px", color: "red" }}
+      >
+        {requiredText}
+      </span>
     </div>
   );
 };
 
 const PureHtmlForm = () => {
-  // name propu sunucuya gönderilen propun ismini karşılar
+  // name attribute u sunucuya gönderilen attribute in ismini karşılar
   // burada state kullanırsak girilen değeri dinamik olarak renderlayacak ama biz bunu engellemek için
   // useRef() ve object oluşturuyoruz ..
   //ama buna büyük projelerde dikkat etmemiz gereklidir ..
@@ -42,6 +53,7 @@ const PureHtmlForm = () => {
   // console.log(inputRef.current.value);
   // const data = new FormData(e.target);
   // bu üst kısım use ref ve object için render dan kurtulmak için
+  const [loading,setLoading] = useState (false)
   const [values, setValues] = useState({
     name: "",
     surname: "",
@@ -59,7 +71,7 @@ const PureHtmlForm = () => {
       placeholder: "Name",
       requiredText: "Baş harf büyük , rakam ve boşluk içeremez",
       required: true,
-      pattern:"^[A-Z][a-z]{9,}$",
+      pattern: "^[A-Z][a-z]{9,}$",
     },
     {
       id: 2,
@@ -67,9 +79,9 @@ const PureHtmlForm = () => {
       name: "surname",
       type: "text",
       placeholder: "Surname",
-      requiredText: "Surname is required element",
+      requiredText: "Baş harf büyük , rakam ve boşluk içeremez",
       required: true,
-      pattern:"^^[A-Z][a-z]{9,}$",
+      pattern: "^[A-Z][a-z]{9,}$",
     },
     {
       id: 3,
@@ -79,7 +91,7 @@ const PureHtmlForm = () => {
       placeholder: "Email",
       requiredText: "Email is required element",
       required: true,
-      pattern:"/^[a-z ,.'-]+$/i",
+      pattern: null,
     },
     {
       id: 4,
@@ -89,7 +101,7 @@ const PureHtmlForm = () => {
       placeholder: "Telephone",
       requiredText: "Telephone is required element",
       required: true,
-      pattern:"/^[a-z ,.'-]+$/i",
+      pattern: "",
     },
     {
       id: 5,
@@ -97,24 +109,28 @@ const PureHtmlForm = () => {
       name: "password",
       type: "password",
       placeholder: "Password",
-      requiredText: "Password is required element",
+      requiredText: "Baş harf büyük , rakam ve boşluk içeremez",
       required: true,
-      pattern:"/^[a-z ,.'-]+$/i",
+      pattern: "^[A-Z][a-z]{9,}$",
     },
     {
       id: 6,
       label: "Confirm Password",
-      name: "confirmPassword",
+      name: "confirmpassword",
       type: "password",
       placeholder: "Confirm Password",
-      requiredText: "Confirm Password is required element",
+      requiredText: "Password u yineleyin",
       required: true,
-      pattern:"/^[a-z ,.'-]+$/i",
+      pattern: values.password,
     },
   ];
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(values);
+    setLoading(true)
+    setTimeout(()=> {
+        setLoading(false)
+    },1500)
   };
   return (
     <div
@@ -129,25 +145,40 @@ const PureHtmlForm = () => {
     >
       <h2>Pure Html Form</h2>
       <form onSubmit={handleSubmit}>
-        {Inputs.map(({ name, label, type, placeholder,required, pattern,requiredText, id }) => {
-          return (
-            <Input
-              key={id}
-              name={name}
-              label={label}
-              type={type}
-              placeholder={placeholder}
-              setValues={setValues}
-              requiredText={requiredText}
-              required={required}
-              pattern={pattern}
-            />
-          );
-        })}
+        {Inputs.map(
+          ({
+            name,
+            label,
+            type,
+            placeholder,
+            required,
+            pattern,
+            requiredText,
+            id,
+          }) => {
+            return (
+              <Input
+                key={id}
+                name={name}
+                label={label}
+                type={type}
+                placeholder={placeholder}
+                requiredText={requiredText}
+                required={required}
+                pattern={pattern}
+                onChange={(e) =>
+                  setValues({ ...values, [e.target.name]: e.target.value })
+                }
+              />
+            );
+          }
+        )}
 
-        <button type="submit">Submit</button>
+        <button type="submit"   >{loading ? "sending" : "submit" }</button>
         <button type="reset">Reset</button>
       </form>
+      <h4 style={{fontSize:"40px"}}>Pure React Form Tamamlandı </h4>
+      <h5>Tarih 23 / 07 2024</h5>
     </div>
   );
 };
