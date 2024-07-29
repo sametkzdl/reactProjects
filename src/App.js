@@ -2,7 +2,7 @@ import { Routes, Route, useParams, Link, useLocation } from "react-router-dom";
 import PureHtmlForm from "./pages/forms/purehtmlform";
 import ReactHookForm from "./pages/forms/reactHookForm";
 import Home from "./pages/home";
-import RandomCard from "./pages/jokesGenerator/jokes";
+import RandomCard from "./pages/randomCard/jokes";
 
 function App() {
   const location = useLocation();
