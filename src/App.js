@@ -61,10 +61,10 @@ function App() {
         <Route path="/Validator" element={<Validator />} />
         <Route path="/Validator" element={<Validator />} />
         <Route path="/Lessons" element={<Lessons />}>
-          <Route path="First" element={<First />} />
-          <Route path="Second" element={<Second />} />
-          <Route path="Third" element={<Third />} />
-          <Route path="Fourth" element={<Fourth />} />
+          <Route path="UseMemo" element={<First />} />
+          <Route path="UseCallback" element={<Second />} />
+          <Route path="ContextApi" element={<Third />} />
+          <Route path="İPfinder" element={<Fourth />} />
         </Route>
         <Route path={"*"} element={<Error />} />
       </Routes>
