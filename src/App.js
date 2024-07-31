@@ -10,6 +10,7 @@ import First from "./pages/educationReact/first";
 import Second from "./pages/educationReact/second";
 import Third from "./pages/educationReact/third";
 import Fourth from "./pages/educationReact/fourth";
+import Fifth from "./pages/educationReact/fifth";
 function App() {
   const urlData = [
     { name: "Home", href: "/", id: 1 },
@@ -65,6 +66,7 @@ function App() {
           <Route path="UseCallback" element={<Second />} />
           <Route path="ContextApi" element={<Third />} />
           <Route path="İPfinder" element={<Fourth />} />
+          <Route path="RealTimeColors" element={<Fifth />} />
         </Route>
         <Route path={"*"} element={<Error />} />
       </Routes>

@@ -6,29 +6,45 @@ const Lessons = () => {
     { name: "UseCallback", href: "/Second", id: 2 },
     { name: "ContextApi", href: "/Third", id: 3 },
     { name: "İPfinder", href: "/Fourth", id: 4 },
+    { name: "RealTimeColors", href: "/Fifth", id: 5 },
+
   ];
   return (
     <div>
-      <h2>Lessons</h2>
-      {urlData.map(({ name }, index) => {
-        return (
-          <NavLink
-            style={({ isActive, isPending, isTransitioning }) => {
-              return {
-                display: "block",
-                border: isActive ? "2px solid red" : "none",
-                padding: isActive ? "5px" : "none",
-                color: isPending ? "red" : "black",
-                viewTransitionName: isTransitioning ? "slide" : "",
-              };
-            }}
-            key={index}
-            to={`${name}`}
-          >
-            {name}
-          </NavLink>
-        );
-      })}
+      <h2 style={{ textAlign: "center" }}>Lessons</h2>
+      <ul
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          borderBottom: "1px solid gray",
+          padding: "20px",
+        }}
+      >
+        {urlData.map(({ name }, index) => {
+          return (
+            <li key={index}>
+              <NavLink
+                style={({ isActive, isPending, isTransitioning }) => {
+                  return {
+                    display: "block",
+                    border: isActive ? "2px solid red" : "none",
+                    padding: isActive ? "10px" : "5px",
+                    color: isPending ? "red" : "black",
+                    viewTransitionName: isTransitioning ? "slide" : "",
+                    width: "150px",
+                    textDecoration: "none",
+                  };
+                }}
+                to={`${name}`}
+              >
+                {name}
+              </NavLink>
+            </li>
+          );
+        })}
+      </ul>
+
       <Outlet />
     </div>
   );
