@@ -7,7 +7,7 @@ const Lessons = () => {
     { name: "ContextApi", href: "/Third", id: 3 },
     { name: "İPfinder", href: "/Fourth", id: 4 },
     { name: "RealTimeColors", href: "/Fifth", id: 5 },
-
+    { name: "Localization", href: "/Sixth", id: 6 },
   ];
   return (
     <div>

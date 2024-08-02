@@ -1,0 +1,6 @@
+{
+  "title": "Dil Yerelleştirme Dersi",
+  "hello": "Merhab , kullanıcı !",
+  "description": "Bu basit bir react uygulamasıdır",
+  "date": "Tarih:{date}"
+}
