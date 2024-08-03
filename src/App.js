@@ -12,6 +12,7 @@ import Third from "./pages/educationReact/third";
 import Fourth from "./pages/educationReact/fourth";
 import Fifth from "./pages/educationReact/fifth";
 import Sixth from "./pages/educationReact/sixth";
+import Rps from "./pages/rockPaperScissor/rps";
 function App() {
   const urlData = [
     { name: "Home", href: "/", id: 1 },
@@ -19,7 +20,8 @@ function App() {
     { name: "ReactHookForm", href: "/ReactHookForm", id: 3 },
     { name: "RandomCard", href: "/RandomCard", id: 4 },
     { name: "Validator", href: "/Validator", id: 5 },
-    { name: "Lessons", href: "/Lessons", id: 6 },
+    { name: "RockPaperScissor", href: "/RockPaperScissor", id: 6 },
+    { name: "Lessons", href: "/Lessons", id: 7 },
   ];
   return (
     <div className="App">
@@ -61,7 +63,7 @@ function App() {
         <Route path="/ReactHookForm" element={<ReactHookForm />} />
         <Route path="/RandomCard" element={<RandomCard />} />
         <Route path="/Validator" element={<Validator />} />
-        <Route path="/Validator" element={<Validator />} />
+        <Route path="/RockPaperScissor" element={<Rps />} />
         <Route path="/Lessons" element={<Lessons />}>
           <Route path="UseMemo" element={<First />} />
           <Route path="UseCallback" element={<Second />} />
