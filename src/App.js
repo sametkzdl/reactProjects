@@ -13,6 +13,7 @@ import Fourth from "./pages/educationReact/fourth";
 import Fifth from "./pages/educationReact/fifth";
 import Sixth from "./pages/educationReact/sixth";
 import Rps from "./pages/rockPaperScissor/rps";
+import Todo from "./pages/to-do/toDo";
 function App() {
   const urlData = [
     { name: "Home", href: "/", id: 1 },
@@ -21,7 +22,8 @@ function App() {
     { name: "RandomCard", href: "/RandomCard", id: 4 },
     { name: "Validator", href: "/Validator", id: 5 },
     { name: "RockPaperScissor", href: "/RockPaperScissor", id: 6 },
-    { name: "Lessons", href: "/Lessons", id: 7 },
+    { name: "Todo", href: "/Todo", id: 7 },
+    { name: "Lessons", href: "/Lessons", id: 8 },
   ];
   return (
     <div className="App">
@@ -64,6 +66,7 @@ function App() {
         <Route path="/RandomCard" element={<RandomCard />} />
         <Route path="/Validator" element={<Validator />} />
         <Route path="/RockPaperScissor" element={<Rps />} />
+        <Route path="/Todo" element={<Todo />} />
         <Route path="/Lessons" element={<Lessons />}>
           <Route path="UseMemo" element={<First />} />
           <Route path="UseCallback" element={<Second />} />
