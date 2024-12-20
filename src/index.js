@@ -5,14 +5,18 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "./pages/educationReact/context/themeContext";
 import { UserProvider } from "./pages/educationReact/context/user.Context";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <ThemeProvider>
-      <UserProvider>
-        <App />
-      </UserProvider>
-    </ThemeProvider>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <ThemeProvider>
+        <UserProvider>
+          <App />
+        </UserProvider>
+      </ThemeProvider>
+    </BrowserRouter>
+  </Provider>
 );
