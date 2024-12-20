@@ -10,17 +10,35 @@ import First from "./pages/educationReact/first";
 import Second from "./pages/educationReact/second";
 import Third from "./pages/educationReact/third";
 import Fourth from "./pages/educationReact/fourth";
+import Fifth from "./pages/educationReact/fifth";
+import Sixth from "./pages/educationReact/sixth";
+import Rps from "./pages/rockPaperScissor/rps";
+import Todo from "./pages/to-do/toDo";
+import UseRedux from "./pages/useRedux/useRedux";
+import { useDispatch, useSelector } from "react-redux";
+import { VscColorMode } from "react-icons/vsc";
+import { changeTheme } from "./redux/themeSlice";
+import QRCode from "./pages/qrCode/qrCode";
 function App() {
+  const dispatch = useDispatch();
+  const themeColor = useSelector((state) => state.theme.themeColor);
   const urlData = [
     { name: "Home", href: "/", id: 1 },
     { name: "PureHtmlForm", href: "/PureHtmlForm", id: 2 },
     { name: "ReactHookForm", href: "/ReactHookForm", id: 3 },
     { name: "RandomCard", href: "/RandomCard", id: 4 },
     { name: "Validator", href: "/Validator", id: 5 },
-    { name: "Lessons", href: "/Lessons", id: 6 },
+    { name: "RockPaperScissor", href: "/RockPaperScissor", id: 6 },
+    { name: "Todo", href: "/Todo", id: 7 },
+    { name: "UseRedux", href: "/UseRedux", id: 8 },
+    { name: "QRCode", href: "/QRCode", id: 9 },
+    { name: "Lessons", href: "/Lessons", id: 10 },
   ];
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{ backgroundColor: themeColor ? "#aaabbb" : "#eee" }}
+    >
       <header>
         <ul
           style={{
@@ -33,6 +51,11 @@ function App() {
             boxSizing: "border-box",
           }}
         >
+          <VscColorMode
+            style={{ padding: "20px", border: "1px solid red" }}
+            onClick={() => dispatch(changeTheme())}
+          />
+
           {urlData.map(({ name, href, id }) => {
             return (
               <NavLink
@@ -59,12 +82,17 @@ function App() {
         <Route path="/ReactHookForm" element={<ReactHookForm />} />
         <Route path="/RandomCard" element={<RandomCard />} />
         <Route path="/Validator" element={<Validator />} />
-        <Route path="/Validator" element={<Validator />} />
+        <Route path="/RockPaperScissor" element={<Rps />} />
+        <Route path="/Todo" element={<Todo />} />
+        <Route path="/UseRedux" element={<UseRedux />} />
+        <Route path="/QRCode" element={<QRCode />} />
         <Route path="/Lessons" element={<Lessons />}>
-          <Route path="First" element={<First />} />
-          <Route path="Second" element={<Second />} />
-          <Route path="Third" element={<Third />} />
-          <Route path="Fourth" element={<Fourth />} />
+          <Route path="UseMemo" element={<First />} />
+          <Route path="UseCallback" element={<Second />} />
+          <Route path="ContextApi" element={<Third />} />
+          <Route path="İPfinder" element={<Fourth />} />
+          <Route path="RealTimeColors" element={<Fifth />} />
+          <Route path="Localization" element={<Sixth />} />
         </Route>
         <Route path={"*"} element={<Error />} />
       </Routes>
